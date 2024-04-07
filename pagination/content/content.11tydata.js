@@ -1,3 +1,3 @@
 module.exports = {
-	"permalink": false,
+  "permalink": false,
 };
