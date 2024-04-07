@@ -1,0 +1,46 @@
+---
+title: My Posts
+pagination:
+  data: collections.all
+  size: 2
+layout: empty.njk
+permalink: /{{ "" if pagination.pageNumber === 0 else pagination.pageNumber }}/
+---
+
+<ol>
+{% for post in pagination.items %}
+  <li><a href="{{ post.filePathStem }}">{{ post.data.title }}</a></li>
+{% endfor %}
+</ol>
+
+{% if pagination.href.first === page.url %}
+  <span>First</span>
+{% else %}
+  <a href="{{pagination.href.first}}">First</a>
+{% endif %}
+
+{% if pagination.href.previous %}
+  <a href="{{pagination.href.previous}}">Previous Page</a>
+{% else %}
+  <span>Previous Page</span>
+{% endif %}
+
+{% for href in pagination.hrefs %}
+  {% if href === page.url %}
+    <span>{{ loop.index }}</span>
+  {% else %}
+    <a href="{{ href }}">{{ loop.index }}</a>
+  {% endif %}
+{% endfor %}
+
+{% if pagination.href.next %}
+  <a href="{{pagination.href.next}}">Next Page</a>
+{% else %}
+  <span>Next Page</span>
+{% endif %}
+
+{% if pagination.href.last === page.url %}
+  <span>Last</span>
+{% else %}
+  <a href="{{pagination.href.last}}">Last</a>
+{% endif %}

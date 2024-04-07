@@ -1,0 +1,20 @@
+---
+pagination:
+  data: collections.all
+  size: 1
+  alias: post
+title: {{ post.data.title }}
+permalink: /{{ post.filePathStem }}.html
+---
+
+{{ post.content | safe }}
+
+<div class="pagination">
+  {% if pagination.href.previous %}
+  <a class="pagination-item prev" rel="prev" href="{{ pagination.href.previous }}">← {{ pagination.page.previous.data.title }}</a>
+  {% endif %}
+
+  {% if pagination.href.next %}
+  <a class="pagination-item next" rel="next" href="{{ pagination.href.next }}">{{ pagination.page.next.data.title }} →</a>
+  {% endif %}
+</div>

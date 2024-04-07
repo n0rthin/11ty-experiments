@@ -1,0 +1,11 @@
+{# ---
+pagination:
+  data: collections.all
+  size: 1
+--- #}
+
+{{ content | safe }}
+
+{# {% if pagination.page.next %}
+  <a href="{{pagination.page.next.url}}">{{pagination.page.next.title}}</a>
+{% endif %} #}
