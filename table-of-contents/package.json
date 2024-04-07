@@ -1,0 +1,18 @@
+{
+  "name": "table-of-contents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve --port=8081"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "cheerio": "^1.0.0-rc.12",
+    "markdown-it-anchor": "^8.6.7"
+  }
+}
