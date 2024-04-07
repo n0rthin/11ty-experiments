@@ -1,11 +1,15 @@
 const cheerio = require("cheerio");
 const TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
 
+/**
+ * @param {string} content - HTML content of the page to build the table of contents from
+ * @returns {string} HTML of the table of contents
+ */
 function buildTOC(content) {
   const $ = cheerio.load(content);
-  const tags = $(TAGS.join(", "));
+  const headings = $(TAGS.join(", "));
   
-  if (tags.length === 0) {
+  if (headings.length === 0) {
     return "";
   }
   
@@ -15,16 +19,17 @@ function buildTOC(content) {
       <ul>
   `;
   let parentLevels = [-1];
-  tags.each((_, element) => {
-    const level = TAGS.indexOf(element.name);
-    const headingText = element.children?.[0]?.data;
-    const id = element.attribs.id;
+  headings.each((_, heading) => {
+    const level = TAGS.indexOf(heading.name);
+    const headingText = heading.children?.[0]?.data;
+    const id = heading.attribs.id;
+    const link = `<li><a href="#${id}">${headingText}</a></li>`;
     let lastLevel = parentLevels[parentLevels.length - 1];
 
     if (level === lastLevel) {
-      toc += `<li><a href="#${id}">${headingText}</a></li>`;
-    } if (level > lastLevel) {
-      toc += `<ul><li><a href="#${id}">${headingText}</a></li>`;
+      toc += link;
+    } else if (level > lastLevel) {
+      toc += `<ul>${link}`;
       parentLevels.push(level);
     } else if (level < lastLevel) {
       while (level < lastLevel) {
@@ -37,7 +42,8 @@ function buildTOC(content) {
         toc += `<ul>`;
         parentLevels.push(level);
       }
-      toc += `<li><a href="#${id}">${headingText}</a></li>`;
+
+      toc += link;
     }
   });
   toc += new Array(parentLevels.length).fill("</ul>").join("");
