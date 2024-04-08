@@ -49,7 +49,7 @@ pagination:
 - `size` - the number of items per page. 11ty will automatically generate as many pages as needed to display all items in the collection
 
 11ty will provide a `pagination` object to the template with the following properties:
-```json
+```js
 {
   items: [], // Array of current page’s chunk of data
   pageNumber: 0, // current page number, 0 indexed
