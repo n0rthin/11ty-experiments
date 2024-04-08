@@ -1,4 +1,4 @@
-module.exports = function(eleventyConfig) {
+module.exports = function() {
   return {
     dir: {
       input: "content",
