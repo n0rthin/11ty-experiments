@@ -1,0 +1,37 @@
+---
+eleventyExcludeFromCollections: true
+layout: page.njk
+---
+
+<section class="max-md:px-6 md:px-12 w-full flex mt-12">
+  <div class="grid gap-10 lg:gap-14 grid-cols-2 max-md:flex max-md:flex-col-reverse max-md:gap-16">
+    <img src="{{ home_page_image }}" class="w-full">
+    <div>
+      <div class="w-full sticky top-5">
+        <h1 class="text-5xl lg:text-6xl leading-[55px] lg:leading-[60px] font-extrabold text-gray-900 max-md:text-3xl">Hey there ✌️ I'm Solo, a minimal personal theme for Ghost</h1>
+        <p class="mt-5 text-xl lg:text-2xl leading-8">Showcase your work to your growing audience. Readers can subscribe below to receive the latest posts directly in their inbox 👇</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="max-md:px-6 md:px-12 w-full flex flex-col my-20">
+  {% for post in collections.all %}
+  {% if post.page.url !== page.url %}
+    <article class="{{ '' if loop.first > 0 else 'md:mt-20 max-md:mt-12' }}">
+      <a href="{{ post.url }}" class="flex flex-row-reverse hover:opacity-80 transition-all duration-300 max-md:flex-col max-md:gap-7 lg:gap-20 {{ '' if post.data.title_image else 'md:mt-20 max-md:mt-12' }}">
+        <figure class="flex-1 relative {{ '' if post.data.title_image else 'hidden' }}">
+          {% if post.data.title_image %}
+            <img src="{{ post.data.title_image }}" alt="{{ post.data.title }}" class="w-full">
+          {% endif %}
+        </figure>
+        <div class="flex flex-col justify-center flex-1 shrink-0 w-full">
+          <h2 class="max-md:text-3xl md:text-4xl lg:text-5xl lg:leading-[60px] font-extrabold text-gray-900">{{ post.data.title }}</h2>
+          <footer class="flex items-center gap-2 mt-4 text-sm font-medium text-gray-400">
+            <time>{{ post.data.page.date | date }}</time>
+          </footer>
+        </div>
+      </a>
+    </article>
+  {% endif %}
+  {% endfor %}
+</section>

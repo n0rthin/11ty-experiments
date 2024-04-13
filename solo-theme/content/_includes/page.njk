@@ -1,0 +1,49 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/built/styles/main.css">
+  <link rel="stylesheet" href="/assets/built/styles/fonts.css">
+  <script src="/assets/built/js/dropdown.js" defer></script>
+</head>
+<body>
+  <header id="wnc-head" class="wnc-head flex items-center gap-x-8 text-gray-900 max-md:px-6 md:px-12 max-md:h-16 md:h-24">
+    <div class="wnc-head-brand flex items-center max-md:grow">
+      <a href="/" class="wnc-head-logo grow font-extrabold no-underline text-gray-900 text-2xl hover:opacity-80">{{ blog_name }}</a>
+      <button class="cursor-pointer outline-none border-0 bg-transparent mr-2 md:hidden">
+        <img src="/assets/icons/search.svg" alt="Search" class="w-6 h-6">
+      </button>
+       <button class="cursor-pointer outline-none border-0 bg-transparent md:hidden">
+        <img src="/assets/icons/menu.svg" alt="Search" class="w-6 h-6">
+      </button>
+    </div>
+    <div class="wnc-head-menu grow max-md:hidden">
+      <nav class="nav flex items-center justify-between">
+        <ul class="flex list-none gap-x-8 text-base">
+          {% for item in top_menu %}
+            <li><a href="{{ item.url }}" class="no-underline text-gray-900 font-bold hover:opacity-80">{{ item.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="wnc-head-actions max-md:hidden">
+      <button class="cursor-pointer outline-none border-0 bg-transparent">
+        <img src="/assets/icons/search.svg" alt="Search" class="w-6 h-6">
+      </button>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer class="py-28 flex flex-col items-center gap-6">
+    <nav>
+      <ul class="flex justify-center max-md:flex-col">
+        {% for item in footer_menu %}
+          <li class="text-gray-400 {{ '' if loop.first else 'before:content-[\'•\'] before:text-sm before:px-3 before:text-gray-900 before:leading-[0px]' }}"><a href="{{ item.url }}" class="no-underline text-gray-400 font-bold hover:opacity-80">{{ item.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="text-gray-400 text-sm">
+      {{ copyright }} © {{ current_year }}. Powered by <a href="https://write-n-chill.com" target="_blank">Write-n-Chill</a>
+    </div>
+  </footer>
+</body>

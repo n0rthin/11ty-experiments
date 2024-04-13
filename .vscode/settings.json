@@ -1,0 +1,6 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "njk": "html",
+    "nunjucks": "html"
+  }
+}

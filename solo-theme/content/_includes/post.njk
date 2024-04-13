@@ -1,0 +1,51 @@
+---
+layout: page.njk
+---
+
+<main class="max-md:px-6 md:px-12 py-20">
+  <article>
+    {% if title or title_image %}
+      <header class="grid grid-cols-12">
+        {% if title %}<h1 class="text-4xl lg:text-6xl font-extrabold col-start-1 md:col-span-9 max-md:col-span-12">{{ title }}</h1>{% endif %}
+        {% if summary %}<p class="mt-5 lg:text-xl text-gray-400 col-start-1 md:col-span-9 max-md:col-span-12">{{ summary }}</p>{% endif %}
+        {% if title_image %}
+          <figure class="max-md:mt-10 col-start-1 col-span-12 md:mt-20">
+            <img src="{{ title_image }}" alt="{{ title }}" class="w-full">
+          </figure>
+        {% endif %}
+
+      </header>
+    {% endif %}
+    <section class="content-headers content-figure relative mt-20 grid grid-cols-12 text-base sm:text-xl [&>*+*]:mt-12 [&>*]:col-start-1 [&>*]:col-span-12 sm:[&>*]:col-start-2 sm:[&>*]:col-span-10 lg:[&>*]:col-start-4 lg:[&>*]:col-span-6">
+      {{ content | safe }}
+      <aside class="row-start-1 top-0 bottom-0 z-10 w-full max-lg:!mb-8 !m-0 !col-start-1 sm:!col-start-2 sm:!col-span-10 md:!col-start-2 md:!col-span-10 lg:!col-span-3 lg:absolute">
+        <div class="sticky top-5 flex flex-col max-lg:flex-row max-lg:items-center">
+          <figure class="max-lg:mr-3 lg:mb-4 max-md:w-16 max-md:h-16 md:w-20 md:h-20 rounded-full">
+            <img src="{{ author_profile_picture }}" alt="{{ author_name }}" class="rounded-full">
+          </figure>
+          <div>
+            <h4 class="font-bold">{{ author_name }}</h4>
+            <time class="text-sm font-medium text-gray-400">{{ page.date | date }}</time>
+          </div>
+        </div>
+      </aside>
+    </section>
+    {% set previousPost = collections.all | getPreviousCollectionItem(page) %}
+    {% set nextPost = collections.all | getNextCollectionItem(page) %}
+    <footer class="mt-48 grid grid-cols-12">
+      <nav class="col-start-1 col-span-12 text-3xl font-extrabold">
+        <div class="flex items-center">
+          {% if previousPost %}
+            <a href="{{ previousPost.url }}" class="hover:opacity-80">← Previous</a>
+          {% endif %}
+        </div>
+        <div></div>
+        <div class="flex items-center justify-end">
+          {% if nextPost %}
+            <a href="{{ nextPost.url }}" class="hover:opacity-80">Next →</a>
+          {% endif %}
+        </div>
+      </nav>
+    </footer>
+  </article>
+</main>

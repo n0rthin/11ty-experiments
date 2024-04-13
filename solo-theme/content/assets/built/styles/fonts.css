@@ -1,0 +1,27 @@
+@font-face {
+	font-family: Manrope;
+	src: url('/assets/fonts/Manrope/static/Manrope-Bold.ttf');
+	font-display: swap;
+  font-weight: 700;
+}
+
+@font-face {
+	font-family: Manrope;
+	src: url('/assets/fonts/Manrope/static/Manrope-ExtraBold.ttf');
+	font-display: swap;
+  font-weight: 800;
+}
+
+@font-face {
+	font-family: Manrope;
+	src: url('/assets/fonts/Manrope/static/Manrope-Medium.ttf');
+	font-display: swap;
+  font-weight: 500;
+}
+
+@font-face {
+	font-family: Manrope;
+	src: url('/assets/fonts/Manrope/static/Manrope-Regular.ttf');
+	font-display: swap;
+  font-weight: 400;
+}
